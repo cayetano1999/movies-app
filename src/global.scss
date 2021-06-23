@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -24,3 +24,18 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import url("../src/assets/bs/bootstrap.min.css");
+
+.text-white {
+  color: white;
+}
+
+.header-home {
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+@font-face {
+  font-family: AppFont;
+  src: url("../src/assets/fonts/Work_Sans/static/WorkSans-ThinItalic.ttf"); //change url accordingly
+}

@@ -1,0 +1,87 @@
+<ion-header class="ion-no-border d-block d-md-none d-lg-none d-xl-none" [translucent]="true">
+  <ion-toolbar class="" color="dark">
+
+    <ion-buttons slot="end">
+      <ion-button (click)="onClick()">
+        <ion-icon slot="start" name="cog-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button (click)="onClick()">
+        <ion-icon slot="start" name="person-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button (click)="onClick()">
+        <ion-icon slot="start" name="videocam-outline"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+    <ion-title color="primary">
+      <div class="row mt-2">
+        <ion-img
+          src="../../assets/img/logo.PNG"
+          size="small"
+          class="w-25"
+        ></ion-img>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+
+  <div class="row bg-dark p-3 header-home">
+    <h3 class="text-white">Hola Josue</h3>
+    <p class="text-white">¿Qué te gustaría ver hoy?</p>
+  </div>
+</ion-header>
+
+<ion-header class="ion-no-border d-none d-md-block" [translucent]="true">
+  <ion-toolbar style="height: 50px;" color="dark">
+
+    <ion-buttons slot="end">
+      <ion-button (click)="onClick()">
+        <ion-icon slot="start" name="cog-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button (click)="onClick()">
+        <ion-icon slot="start" name="person-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button (click)="onClick()">
+        <ion-icon slot="start" name="videocam-outline"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+    <ion-title color="primary">
+      <div class="row mt-2 col-sm-3">
+        <!-- <ion-img
+          src="../../assets/img/logo.PNG"
+          size="small"
+          class="w-25"
+        ></ion-img> -->
+      </div>
+    </ion-title>
+  </ion-toolbar>
+
+  <div class="row bg-dark p-3 text-center">
+    <ion-icon slot="start" style="color: white;" name="happy-outline"></ion-icon>
+    <h3 class="text-white">Hola Josue</h3>
+    <p class="text-white">¿Qué te gustaría ver hoy?</p>
+  </div>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+ 
+ <ion-card>
+   <p class="text-white p-3">Fast And Furious 8 - The Saga</p>
+   <ion-img src="../../assets/gif/ff8.gif"></ion-img>
+   <ion-card-header>
+     <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+     <ion-card-title>Awesome Title</ion-card-title>
+   </ion-card-header>
+   <ion-card-content>
+     Awesome content
+   </ion-card-content>
+ </ion-card>
+
+ 
+
+  <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
+</ion-content>
