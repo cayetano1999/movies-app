@@ -12,14 +12,20 @@ import { MoviesApiService } from '../../core/services/movieDb-api/movies-api.ser
 export class HomePage implements OnInit {
 
   movies: Array<Movies> = [];
+  popularMovies: Array<Movies> = [];
   billboards: Array<Movies> = [];
   slideOpts = {
-    slidesPerView: 1.1,
+    slidesPerView: 1.3,
     freeMode: true
   }
 
   slideOptsBillboard = {
     slidesPerView: 3.3,
+    freeMode: true
+  }
+
+  sildeOptsPopular = {
+    slidesPerView: 2.0,
     freeMode: true
   }
 
@@ -50,6 +56,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.getAllMovies();
+    this.getPopular();
   }
 
   async getAllMovies() {
@@ -57,6 +64,12 @@ export class HomePage implements OnInit {
       this.movies = response.results;
       console.log(this.movies);
     });
+  }
+
+  async getPopular(){
+    await this.movesApiService.getPopular('popular').subscribe(response=> {
+      this.popularMovies = response.results;
+    })
   }
 
 }
