@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { MoviesResponse } from '../../interfaces/movies-response';
+import { ResultMovies } from '../../interfaces/movies-response';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +13,15 @@ export class MoviesApiService {
 
   apiUrl: string = environment.apiURL;
   apiKey: string = environment.apiKey;
+  imageApiURL: string = environment.imageUrl;
   initDate: string =  '2015-01-01'
   endDate: string = '2025-01-01'
   language: string = 'es'
 
   routes = {
 
-    getMovies: () => `${this.apiUrl}?api_key=${this.apiKey}&page=1&language=es&include_image_language=es`
-
-
+    getMovies: () => `${this.apiUrl}?api_key=${this.apiKey}&page=1&language=es&include_image_language=es`,
+    getImage: (key: string) => `${this.imageApiURL}/${key}`
   }
 
   constructor(private httpClient: HttpClient) {
@@ -29,7 +29,10 @@ export class MoviesApiService {
   }
 
   getMovies(){
-    return this.httpClient.get<Array<MoviesResponse>>(this.routes.getMovies());
+    return this.httpClient.get<ResultMovies>(this.routes.getMovies());
   }
 
+  getImg(id: string){
+    return this.httpClient.get<any>(this.routes.getImage(id));
+  }
 }

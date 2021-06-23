@@ -22,7 +22,7 @@ export interface SpokenLanguage {
     name: string;
 }
 
-export interface MoviesResponse {
+export interface Movies {
     adult: boolean;
     backdrop_path: string;
     belongs_to_collection?: any;
@@ -48,6 +48,11 @@ export interface MoviesResponse {
     video: boolean;
     vote_average: number;
     vote_count: number;
+}
+
+export interface ResultMovies {
+    page: number,
+    results: Array<Movies>;
 }
 
 

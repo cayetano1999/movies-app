@@ -82,6 +82,13 @@
  </ion-card>
 
  
+ <ion-slides [options]="slideOpts" mode="ios" pager="ios" scrollbar="ios">
+   <ion-slide *ngFor="let item of movies">
+     <ion-card>
+       <img [src]="item?.backdrop_path | picture" alt="">
+     </ion-card>
+   </ion-slide>
+ </ion-slides>
 
   <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
 </ion-content>

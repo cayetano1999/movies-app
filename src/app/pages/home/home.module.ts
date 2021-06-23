@@ -6,6 +6,7 @@ import { ExploreContainerComponentModule } from '../../explore-container/explore
 
 import { Tab1PageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
+import { PipesModule } from 'src/app/core/pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { HomePage } from './home.page';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab1PageRoutingModule
+    Tab1PageRoutingModule,
+    PipesModule
   ],
   declarations: [HomePage]
 })
