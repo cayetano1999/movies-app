@@ -14,6 +14,7 @@ export class HomePage implements OnInit {
   movies: Array<Movies> = [];
   popularMovies: Array<Movies> = [];
   billboards: Array<Movies> = [];
+  popularPage: number = 1;
   slideOpts = {
     slidesPerView: 1.3,
     freeMode: true
@@ -26,7 +27,8 @@ export class HomePage implements OnInit {
 
   sildeOptsPopular = {
     slidesPerView: 2.0,
-    freeMode: true
+    freeMode: true,
+    spaceBetween: -10,
   }
 
   trillers: Array<Trillers> = [
@@ -67,9 +69,18 @@ export class HomePage implements OnInit {
   }
 
   async getPopular(){
-    await this.movesApiService.getPopular('popular').subscribe(response=> {
+    await this.movesApiService.getPopular('popular', 1).subscribe(response=> {
       this.popularMovies = response.results;
     })
+  }
+
+  async loadMorePares(){
+    this.popularPage++;
+    await this.movesApiService.getPopular('popular', this.popularPage).subscribe(response=> {
+      debugger;
+      let arrayTemp = [...this.popularMovies, ...response.results];
+      this.popularMovies = arrayTemp;
+    });
   }
 
 }

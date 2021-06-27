@@ -105,7 +105,7 @@
     </ion-col>
   </ion-row>
 
-  <app-slideshow-poster [movies]="popularMovies" [slideOpts]="sildeOptsPopular"></app-slideshow-poster>
+  <app-slideshow-pares (loadMoreOutput)="loadMorePares($event)" [movies]="popularMovies" [slideOpts]="sildeOptsPopular"></app-slideshow-pares>
 
   <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
 </ion-content>

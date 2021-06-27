@@ -21,7 +21,7 @@ export class MoviesApiService {
   routes = {
 
     getMovies: () => `${this.apiUrl}?api_key=${this.apiKey}&page=1&language=es&include_image_language=es`,
-    getPopular: (section: string) => `${this.apiUrl}?sort_by=${section}&api_key=${this.apiKey}&page=1&language=es&include_image_language=es`,
+    getPopular: (section: string, page: number) => `${this.apiUrl}?sort_by=${section}&api_key=${this.apiKey}&page=${page}&language=es&include_image_language=es`,
     getImage: (key: string) => `${this.imageApiURL}/${key}`
   }
 
@@ -33,7 +33,7 @@ export class MoviesApiService {
     return this.httpClient.get<ResultMovies>(this.routes.getMovies());
   }
 
-  getPopular(section: string){
-    return this.httpClient.get<ResultMovies>(this.routes.getPopular(section));
+  getPopular(section: string, page: number){
+    return this.httpClient.get<ResultMovies>(this.routes.getPopular(section, page));
   }
 }
