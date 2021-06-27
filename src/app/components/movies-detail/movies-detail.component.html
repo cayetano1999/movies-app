@@ -1,8 +1,173 @@
-<div class="bg-info">
+<ion-content>
+  <ion-label class="titulo">
+    <h1 class="bg-danger px-5 py-1 label-style text-center">
+      {{ movie?.title }}
+    </h1>
+  </ion-label>
 
-  <ion-buttons slot="start">
-    <ion-back-button></ion-back-button>
-  </ion-buttons>
+  <img
+    class="w-100"
+    *ngIf="movie?.backdrop_path"
+    [src]="movie?.backdrop_path | picture"
+    alt=""
+  />
 
-  <h4 class="text-center">{{movie?.original_title}}</h4>
-</div>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="4" class="poster-detalle-sobre">
+        <ion-card class="poster">
+          <img
+            *ngIf="movie?.poster_path"
+            [src]="movie.poster_path | picture"
+            alt=""
+          />
+        </ion-card>
+      </ion-col>
+      <ion-col size="8">
+        <ion-item>
+          <ion-icon slot="start" name="thumbs-up" color="primary"></ion-icon>
+          <ion-label>Rating</ion-label>
+          <ion-note slot="end">{{ movie.vote_average }}</ion-note>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon
+            slot="start"
+            name="people-circle-outline"
+            color="primary"
+          ></ion-icon>
+          <ion-label>Votos</ion-label>
+          <ion-note slot="end">{{ movie.vote_count }}</ion-note>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-label class="text-justify"
+          >{{ movie?.overview | truncate: 0:end }}
+          <a
+            *ngIf="movie?.overview.length > end"
+            (click)="showFullText()"
+            class="text-danger"
+            >Ver más</a
+          >
+          <a
+            *ngIf="movie?.overview.length == end"
+            (click)="showLowerText()"
+            class="text-danger"
+            >Ver menos</a
+          >
+        </ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button color="danger" (click)="onClick()" expand="block"  shape="round">
+           <ion-icon slot="icon-only" name="play-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-label class="mt-3">Generos</ion-label>
+      <ion-col size="12">
+        <ion-segment scrollable>
+          <ion-chip
+            *ngFor="let item of movie?.genres"
+            color="primary"
+            mode="ios"
+            outline="true"
+          >
+            <ion-label>{{ item.name }}</ion-label>
+          </ion-chip>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-label class="mt-3">Idiomas</ion-label>
+      <ion-col size="12">
+        <ion-segment scrollable>
+          <ion-chip
+            *ngFor="let item of movie?.spoken_languages"
+            color="warning"
+            mode="ios"
+            outline="true"
+          >
+            <ion-label>{{ item.name }}</ion-label>
+          </ion-chip>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-label>Actores</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-slides class="mb-5" [options]="slideOptActores">
+    <ion-slide color="warning" *ngFor="let item of actores">
+      <ion-card class="card-actor">
+        <img [src]="item.profile_path | picture" alt="" />
+        <ion-card-header>
+          <p>{{ item.name }}</p>
+        </ion-card-header>
+        <ion-card-content> </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-label>Empresas Productoras</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-slides class="mb-5" [options]="slideOptActores">
+    <ion-slide color="warning" *ngFor="let item of movie?.production_companies">
+      <ion-card class="card-actor">
+        <img [src]="item.logo_path | picture" alt="" />
+        <ion-card-header>
+          <p>{{ item.name | slice: 0:10 }}</p>
+        </ion-card-header>
+        <ion-card-content> </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+<ion-footer no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Volver
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="goBack()" color="warning" shape="round">
+        <ion-icon name="star-outline" slot="start"></ion-icon>
+        AGREGAR
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

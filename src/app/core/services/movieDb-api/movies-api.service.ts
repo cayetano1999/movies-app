@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { RespuestaMDB } from '../../interfaces/movie-detail';
+import { MovieDetail, RespuestaCredits } from '../../interfaces/movie-detail';
 import { ResultMovies, Movies } from '../../interfaces/movies-response';
 
 @Injectable({
@@ -26,7 +26,8 @@ export class MoviesApiService {
     getMovies: () => `${this.apiUrl}?api_key=${this.apiKey}&page=1&language=es&include_image_language=es`,
     getPopular: (section: string, page: number) => `${this.apiUrl}?sort_by=${section}&api_key=${this.apiKey}&page=${page}&language=es&include_image_language=es`,
     getImage: (key: string) => `${this.imageApiURL}/${key}`,
-    getDetail: (id: string) => `${this.apiUrlNotDiscover}/${id}?api_key=${this.apiKey}` 
+    getDetail: (id: string) => `${this.apiUrlNotDiscover}/${id}?api_key=${this.apiKey}&language=es&include_image_language=es`, 
+    getCredits:(id: string) => `${this.apiUrlNotDiscover}/${id}/credits?api_key=${this.apiKey}&language=es&include_image_language=es` 
   }
 
   constructor(private httpClient: HttpClient) {
@@ -42,6 +43,10 @@ export class MoviesApiService {
   }
 
   getMovieDetail(id: any){
-    return this.httpClient.get<RespuestaMDB>(this.routes.getDetail(id));
+    return this.httpClient.get<MovieDetail>(this.routes.getDetail(id));
+  }
+
+  getCredits(id: any){
+    return this.httpClient.get<RespuestaCredits>(this.routes.getCredits(id));
   }
 }
