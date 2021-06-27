@@ -2,7 +2,7 @@
   <ion-slide *ngFor="let item of movies | par">
     <div class="row">
       <div class="col-sm-12" *ngFor="let per of item">
-        <ion-card>
+        <ion-card (click)="showMovieDetails(per)">
           <img class="poster" [src]="per?.poster_path | picture" alt="" />
         </ion-card>
       </div>

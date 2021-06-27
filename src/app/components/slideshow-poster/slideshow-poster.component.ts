@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Movies } from 'src/app/core/interfaces/movies-response';
 
 @Component({
@@ -10,8 +10,14 @@ export class SlideshowPosterComponent implements OnInit {
 
   @Input() movies: Array<Movies> = [];
   @Input() slideOpts : any;  
+  @Output() showDetails = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {}
+
+  showDetail(item: Movies){
+    this.showDetails.emit(item);
+  }
 
 }

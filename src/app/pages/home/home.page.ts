@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Movies} from 'src/app/core/interfaces/movies-response';
 import { Trillers } from 'src/app/core/interfaces/trillers';
 import { MoviesApiService } from '../../core/services/movieDb-api/movies-api.service';
+import { ModalController } from '@ionic/angular';
+import { MoviesDetailComponent } from 'src/app/components/movies-detail/movies-detail.component';
 
 @Component({
   selector: 'app-home',
@@ -52,7 +54,7 @@ export class HomePage implements OnInit {
 
 
 
-  constructor(private movesApiService: MoviesApiService) {
+  constructor(private movesApiService: MoviesApiService, private modalController: ModalController) {
 
   }
 
@@ -81,6 +83,21 @@ export class HomePage implements OnInit {
       let arrayTemp = [...this.popularMovies, ...response.results];
       this.popularMovies = arrayTemp;
     });
+  }
+
+  async showDetails(movie: Movies){
+    debugger;
+    const modal = await this.modalController.create({
+      component: MoviesDetailComponent,
+      animated: true,
+      componentProps: {
+        movie: movie
+      },
+      showBackdrop: true,
+      swipeToClose: true
+    });
+
+    modal.present();
   }
 
 }

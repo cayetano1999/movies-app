@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Movies } from 'src/app/core/interfaces/movies-response';
+import { MoviesDetailComponent } from '../movies-detail/movies-detail.component';
 
 @Component({
   selector: 'app-slides',
@@ -9,10 +11,16 @@ import { Movies } from 'src/app/core/interfaces/movies-response';
 export class SlidesComponent implements OnInit {
 
   @Input() movies: Array<Movies> = [];
-  @Input() slideOpts : any;  
+  @Input() slideOpts : any;
+  @Output() showDetails = new EventEmitter();
+  
 
-  constructor() { }
+  constructor(private  modalController: ModalController) { }
 
   ngOnInit() {}
+
+   showDetail(item: Movies){
+    this.showDetails.emit(item);
+  }
 
 }

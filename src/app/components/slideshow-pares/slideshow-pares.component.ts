@@ -11,6 +11,8 @@ export class SlideshowParesComponent implements OnInit {
   @Input() movies: Array<Movies> = [];
   @Input() slideOpts : any;  
   @Output() loadMoreOutput = new EventEmitter();
+  @Output() showDetails = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {}
@@ -18,4 +20,8 @@ export class SlideshowParesComponent implements OnInit {
   loadMore(){
     this.loadMoreOutput.emit(true);
   }
+
+  showMovieDetails(item: Movies){
+    this.showDetails.emit(item);
+  } 
 }

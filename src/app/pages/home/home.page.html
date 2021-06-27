@@ -89,7 +89,7 @@
       <h2 class="p-3"><strong>Peliculas Nuevas</strong></h2>
     </ion-col>
   </ion-row>
-  <app-slides [movies]="movies" [slideOpts]="slideOpts"></app-slides>
+  <app-slides (showDetails)="showDetails($event)" [movies]="movies" [slideOpts]="slideOpts"></app-slides>
 
   <ion-row>
     <ion-col size="12">
@@ -97,7 +97,7 @@
     </ion-col>
   </ion-row>
 
-  <app-slideshow-poster [movies]="movies" [slideOpts]="slideOptsBillboard"></app-slideshow-poster>
+  <app-slideshow-poster (showDetails)="showDetails($event)"  [movies]="movies" [slideOpts]="slideOptsBillboard"></app-slideshow-poster>
 
   <ion-row>
     <ion-col size="12">
@@ -105,7 +105,7 @@
     </ion-col>
   </ion-row>
 
-  <app-slideshow-pares (loadMoreOutput)="loadMorePares($event)" [movies]="popularMovies" [slideOpts]="sildeOptsPopular"></app-slideshow-pares>
+  <app-slideshow-pares (showDetails)="showDetails($event)" (loadMoreOutput)="loadMorePares($event)" [movies]="popularMovies" [slideOpts]="sildeOptsPopular"></app-slideshow-pares>
 
   <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
 </ion-content>
