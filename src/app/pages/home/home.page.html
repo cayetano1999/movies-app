@@ -27,7 +27,7 @@
     </ion-title>
   </ion-toolbar>
 
-  <div class="row bg-dark p-3 header-home">
+  <div id="welcome" *ngIf="header" class="row bg-dark p-3 header-home animate__animated  animate__fadeIn">
     <h3 class="text-white">Hola Josue</h3>
     <p class="text-white">¿Qué te gustaría ver hoy?</p>
   </div>
@@ -66,19 +66,24 @@
   </div> -->
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)"[fullscreen]="true" class="animate__animated animate__bounceInLeft">
   <ion-row>
     <ion-col size="12">
       <h2 class="p-3"><strong>Nuevos Trillers</strong></h2>
     </ion-col>
   </ion-row>
 
-  <ion-slides [options]="slideOpts" mode="ios" pager="ios" scrollbar="ios">
+  <ion-slides [options]="sildeOptsPopular">
     <ng-container *ngFor="let item of trillers">
       <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4"> -->
-        <ion-slide >
-          <ion-img class="w-100" [src]="item.gif"></ion-img>
-          <p>{{item.name}}</p>
+        <ion-slide>
+          <ion-card>
+            <ion-img class="w-100" [src]="item.gif"></ion-img>
+            <ion-card-header>
+              <p>{{item.name}}</p>
+            </ion-card-header>
+            <ion-card-content> </ion-card-content>
+          </ion-card>
         </ion-slide>
       <!-- </div> -->
     </ng-container>

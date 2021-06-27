@@ -1,10 +1,11 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import { Movies} from 'src/app/core/interfaces/movies-response';
+import { Movies } from 'src/app/core/interfaces/movies-response';
 import { Trillers } from 'src/app/core/interfaces/trillers';
 import { MoviesApiService } from '../../core/services/movieDb-api/movies-api.service';
 import { ModalController } from '@ionic/angular';
 import { MoviesDetailComponent } from 'src/app/components/movies-detail/movies-detail.component';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ export class HomePage implements OnInit {
   popularMovies: Array<Movies> = [];
   billboards: Array<Movies> = [];
   popularPage: number = 1;
+  scrolled: number = 0;
   slideOpts = {
     slidesPerView: 1.3,
     freeMode: true
@@ -51,10 +53,29 @@ export class HomePage implements OnInit {
       gif: 'https://media1.tenor.com/images/5a4db2220ac4a1d1bd6b929bbc484b65/tenor.gif?itemid=14988044',
     }
   ]
+  header: boolean = true;;
 
 
 
   constructor(private movesApiService: MoviesApiService, private modalController: ModalController) {
+
+  }
+
+  onScroll(event) {
+    debugger;
+    let element = document.getElementById('welcome');
+    const value = String(event.detail.scrollTop / 100);
+    console.log('scroll:', event.detail.scrollTop, 'opc:', value);
+
+
+
+    this.scrolled = event.detail.scrollTop;
+    if (this.scrolled >= 56) {
+      this.header = false
+    }
+    else if (this.scrolled <= 55) {
+      this.header = true;
+    }
 
   }
 
@@ -70,22 +91,22 @@ export class HomePage implements OnInit {
     });
   }
 
-  async getPopular(){
-    await this.movesApiService.getPopular('popular', 1).subscribe(response=> {
+  async getPopular() {
+    await this.movesApiService.getPopular('popular', 1).subscribe(response => {
       this.popularMovies = response.results;
     })
   }
 
-  async loadMorePares(){
+  async loadMorePares() {
     this.popularPage++;
-    await this.movesApiService.getPopular('popular', this.popularPage).subscribe(response=> {
+    await this.movesApiService.getPopular('popular', this.popularPage).subscribe(response => {
       debugger;
       let arrayTemp = [...this.popularMovies, ...response.results];
       this.popularMovies = arrayTemp;
     });
   }
 
-  async showDetails(movie: Movies){
+  async showDetails(movie: Movies) {
     debugger;
     const modal = await this.modalController.create({
       component: MoviesDetailComponent,

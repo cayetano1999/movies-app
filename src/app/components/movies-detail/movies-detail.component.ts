@@ -4,6 +4,7 @@ import { Movies } from '../../core/interfaces/movies-response';
 import { MoviesApiService } from '../../core/services/movieDb-api/movies-api.service';
 import { MovieDetail, RespuestaCredits, Cast } from '../../core/interfaces/movie-detail';
 import { ModalController } from '@ionic/angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
   selector: 'app-movies-detail',
@@ -22,7 +23,7 @@ export class MoviesDetailComponent implements OnInit {
     spacebetween:-10,
   }
 
-  constructor(private apiService: MoviesApiService, private modalController: ModalController) { }
+constructor(private apiService: MoviesApiService, private modalController: ModalController, private inB: InAppBrowser ) { }
 
   ngOnInit() {
     this.getMovieDetail();
@@ -51,6 +52,10 @@ export class MoviesDetailComponent implements OnInit {
 
   goBack(){
     this.modalController.dismiss();
+  }
+
+  goToPage(item: MovieDetail){
+    this.inB.create(item.homepage, '_system');
   }
 
 }

@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content class="animate__animated animate__backInUp animate__faster">
   <ion-label class="titulo">
     <h1 class="bg-danger px-5 py-1 label-style text-center">
       {{ movie?.title }}
@@ -68,7 +68,7 @@
   <ion-grid fixed>
     <ion-row>
       <ion-col size="12">
-        <ion-button color="danger" (click)="onClick()" expand="block"  shape="round">
+        <ion-button color="danger" (click)="goToPage(movie)" expand="block"  shape="round">
            <ion-icon slot="icon-only" name="play-outline"></ion-icon>
         </ion-button>
       </ion-col>
@@ -125,7 +125,7 @@
     <ion-slide color="warning" *ngFor="let item of actores">
       <ion-card class="card-actor">
         <img [src]="item.profile_path | picture" alt="" />
-        <ion-card-header>
+        <ion-card-header class="pb-3">
           <p>{{ item.name }}</p>
         </ion-card-header>
         <ion-card-content> </ion-card-content>
