@@ -5,6 +5,8 @@ import { MoviesApiService } from '../../core/services/movieDb-api/movies-api.ser
 import { MovieDetail, RespuestaCredits, Cast } from '../../core/interfaces/movie-detail';
 import { ModalController } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { DataLocalService } from 'src/app/core/services/storage-service/storage.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-movies-detail',
@@ -14,19 +16,29 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 export class MoviesDetailComponent implements OnInit {
 
   @Input() movie: MovieDetail;
+  moviesF: MovieDetail[] = [];
   actores: Cast[] = [];
   end: number = 200;
 
   slideOptActores = {
     slidesPerView: 3.3,
     freeMode: true,
-    spacebetween:-10,
+    spacebetween: -10,
   }
+  isFavorite: boolean = true;
 
-constructor(private apiService: MoviesApiService, private modalController: ModalController, private inB: InAppBrowser ) { }
+  constructor(private apiService: MoviesApiService, private modalController: ModalController, private inB: InAppBrowser, private str: Storage, private storageService: DataLocalService) {
+    
+   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getMovieDetail();
+    this.str.create().then(async r => {
+      this.moviesF = await this.storageService.GetAllItem();
+      console.log('Favoritos', this.moviesF);
+      this.isInFavorite();
+    })
+
   }
 
 
@@ -50,12 +62,21 @@ constructor(private apiService: MoviesApiService, private modalController: Modal
     this.end = 200;
   }
 
-  goBack(){
+  goBack() {
     this.modalController.dismiss();
   }
 
-  goToPage(item: MovieDetail){
+  goToPage(item: MovieDetail) {
     this.inB.create(item.homepage, '_system');
+  }
+
+  async addToFavorite(item: MovieDetail) {
+    await this.storageService.addItem(item, this.moviesF);
+    this.isInFavorite();
+  }
+
+  async isInFavorite() {
+    this.isFavorite = this.storageService.existItem(this.movie, this.moviesF);
   }
 
 }

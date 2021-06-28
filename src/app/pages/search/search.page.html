@@ -1,6 +1,6 @@
 <ion-content
   [fullscreen]="true"
-  class="animate__animated animate__bounceInLeft"
+  
 >
   <!-- <h2 class="display-4 p-3">Búsca la pelicula que deseas</h2> -->
   <ion-searchbar
@@ -10,7 +10,7 @@
     [value]="filter"
     (ionChange)="onSearchChange($event)"
     [debounce]="700"
-  ></ion-searchbar>
+    class="animate__animated animate__bounceInLeft"></ion-searchbar>
   <ion-list *ngIf="loading && movies?.length > 0">
     <ion-header>
       <ion-toolbar>
@@ -48,7 +48,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-list>
+  <ion-list class="animate__animated animate__bounceInRight">
     <ion-header>
       <ion-toolbar>
         <ion-title>Sugerencias</ion-title>

@@ -28,7 +28,7 @@ export class ToastControllerService {
       message: message,
       translucent: true,
       duration: 4000,
-      position: 'bottom',
+      position: 'top',
       color: 'success',
     });
     toast.present();
@@ -54,7 +54,7 @@ export class ToastControllerService {
       message: message,
       translucent: true,
       duration: 5000,
-      position: 'bottom',
+      position: 'top',
       color: 'warning',
     });
     

@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { Tab3Page } from './favorites.page';
 
 import { Tab3PageRoutingModule } from './favorites-routing.module';
+import { PipesModule } from 'src/app/core/pipes/pipes.module';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -14,6 +16,8 @@ import { Tab3PageRoutingModule } from './favorites-routing.module';
     FormsModule,
     RouterModule.forChild([{ path: '', component: Tab3Page }]),
     Tab3PageRoutingModule,
+    PipesModule,
+    ComponentsModule
   ],
   declarations: [Tab3Page]
 })

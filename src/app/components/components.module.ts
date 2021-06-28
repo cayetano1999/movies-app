@@ -6,6 +6,7 @@ import { SlidesComponent } from './slides/slides.component';
 import { SlideshowPosterComponent } from './slideshow-poster/slideshow-poster.component';
 import { SlideshowParesComponent } from './slideshow-pares/slideshow-pares.component';
 import { MoviesDetailComponent } from './movies-detail/movies-detail.component';
+import { DataLocalService } from '../core/services/storage-service/storage.service';
 
 @NgModule({
     declarations: [SlidesComponent, SlideshowPosterComponent, SlideshowParesComponent, MoviesDetailComponent],
@@ -14,7 +15,8 @@ import { MoviesDetailComponent } from './movies-detail/movies-detail.component';
     IonicModule,
     PipesModule
   ],
-  exports:[SlidesComponent, SlideshowPosterComponent, SlideshowParesComponent, MoviesDetailComponent]
+  exports:[SlidesComponent, SlideshowPosterComponent, SlideshowParesComponent, MoviesDetailComponent],
+  providers:[DataLocalService]
 
   })
   export class ComponentsModule {}

@@ -66,14 +66,14 @@
   </div> -->
 </ion-header>
 
-<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)"[fullscreen]="true" class="animate__animated animate__bounceInLeft">
-  <ion-row>
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)"[fullscreen]="true" >
+  <ion-row class="animate__animated animate__bounceInLeft">
     <ion-col size="12">
       <h2 class="p-3"><strong>Nuevos Trillers</strong></h2>
     </ion-col>
   </ion-row>
 
-  <ion-slides [options]="sildeOptsPopular">
+  <ion-slides [options]="sildeOptsPopular" class="animate__animated animate__bounceInLeft">
     <ng-container *ngFor="let item of trillers">
       <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4"> -->
         <ion-slide>
@@ -89,28 +89,28 @@
     </ng-container>
   </ion-slides>
 
-  <ion-row>
+  <ion-row class="animate__animated animate__bounceInRight">
     <ion-col size="12">
       <h2 class="p-3"><strong>Peliculas Nuevas</strong></h2>
     </ion-col>
   </ion-row>
-  <app-slides (showDetails)="showDetails($event)" [movies]="movies" [slideOpts]="slideOpts"></app-slides>
+  <app-slides class="animate__animated animate__bounceInRight" (showDetails)="showDetails($event)" [movies]="movies" [slideOpts]="slideOpts"></app-slides>
 
-  <ion-row>
+  <ion-row class="animate__animated animate__bounceInLeft">
     <ion-col size="12">
       <h2 class="p-3"><strong>Carteleras</strong></h2>
     </ion-col>
   </ion-row>
 
-  <app-slideshow-poster (showDetails)="showDetails($event)"  [movies]="movies" [slideOpts]="slideOptsBillboard"></app-slideshow-poster>
+  <app-slideshow-poster class="animate__animated animate__bounceInLeft" (showDetails)="showDetails($event)"  [movies]="movies" [slideOpts]="slideOptsBillboard"></app-slideshow-poster>
 
-  <ion-row>
+  <ion-row class="animate__animated animate__bounceInRight">
     <ion-col size="12">
       <h2 class="p-3"><strong>Populares</strong></h2>
     </ion-col>
   </ion-row>
 
-  <app-slideshow-pares (showDetails)="showDetails($event)" (loadMoreOutput)="loadMorePares($event)" [movies]="popularMovies" [slideOpts]="sildeOptsPopular"></app-slideshow-pares>
+  <app-slideshow-pares class="animate__animated animate__bounceInRight" (showDetails)="showDetails($event)" (loadMoreOutput)="loadMorePares($event)" [movies]="popularMovies" [slideOpts]="sildeOptsPopular"></app-slideshow-pares>
 
   <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
 </ion-content>
