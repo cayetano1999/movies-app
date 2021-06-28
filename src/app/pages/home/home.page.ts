@@ -97,7 +97,7 @@ export class HomePage implements OnInit {
     })
   }
 
-  async loadMorePares() {
+  async loadMorePares(evnet) {
     this.popularPage++;
     await this.movesApiService.getPopular('popular', this.popularPage).subscribe(response => {
       debugger;

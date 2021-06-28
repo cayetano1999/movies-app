@@ -35,6 +35,9 @@ export class MoviesDetailComponent implements OnInit {
     this.getMovieDetail();
     this.str.create().then(async r => {
       this.moviesF = await this.storageService.GetAllItem();
+      if(this.moviesF == null) {
+        this.moviesF = [];
+      }
       console.log('Favoritos', this.moviesF);
       this.isInFavorite();
     })
@@ -70,13 +73,20 @@ export class MoviesDetailComponent implements OnInit {
     this.inB.create(item.homepage, '_system');
   }
 
-  async addToFavorite(item: MovieDetail) {
-    await this.storageService.addItem(item, this.moviesF);
-    this.isInFavorite();
+  addToFavorite(item: MovieDetail) {
+    console.log('ITEM: ', JSON.stringify(item));
+    console.log('MOVIES: ', JSON.stringify(this.moviesF));
+
+    this.storageService.addItem(item, this.moviesF).then(r=> {
+      this.isInFavorite();
+    });
   }
 
-  async isInFavorite() {
-    this.isFavorite = this.storageService.existItem(this.movie, this.moviesF);
+   isInFavorite() {
+    debugger;
+    let result = this.moviesF.filter(n => n.id == this.movie.id).length > 0;
+    return result;
+
   }
 
 }

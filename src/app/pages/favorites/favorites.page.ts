@@ -33,7 +33,7 @@ export class Tab3Page {
     this.moviesF = this.moviesF.filter(m => m.id != item.id);
     await this.storageService.setAsRemove(this.moviesF);
     this.moviesF = await this.storageService.GetAllItem();
-    
+
 
   }
 
@@ -43,7 +43,7 @@ export class Tab3Page {
     even?.target?.complete();
   }
 
-  async showDetails(movie: Movies) {
+  async showDetails(movie: any) {
     debugger;
     const modal = await this.modalController.create({
       component: MoviesDetailComponent,
@@ -56,6 +56,11 @@ export class Tab3Page {
     });
 
     modal.present();
+  }
+
+  async ionViewWillEnter() {
+    this.moviesF = await this.storageService.GetAllItem();
+    console.log('Favoritos', this.moviesF);
   }
 
 }

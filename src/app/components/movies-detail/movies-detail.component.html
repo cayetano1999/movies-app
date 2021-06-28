@@ -164,12 +164,12 @@
     </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button *ngIf="!isFavorite" (click)="addToFavorite(movie)" color="warning" shape="round">
+      <ion-button *ngIf="!isInFavorite()" (click)="addToFavorite(movie)" color="warning" shape="round">
         <ion-icon name="star-outline" slot="start"></ion-icon>
         AGREGAR
       </ion-button>
 
-      <ion-button *ngIf="isFavorite" color="success" shape="round">
+      <ion-button *ngIf="isInFavorite()" color="success" shape="round">
         <ion-icon name="star" slot="start"></ion-icon>
         ES FAVORITO
       </ion-button>
