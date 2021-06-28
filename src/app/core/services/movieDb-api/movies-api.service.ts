@@ -14,6 +14,8 @@ export class MoviesApiService {
 
   apiUrl: string = environment.apiURL;
   apiUrlNotDiscover: string = environment.apiURLNotDiscover;
+  apiSearch: string = environment.apiUrlToSearch;
+
 
   apiKey: string = environment.apiKey;
   imageApiURL: string = environment.imageUrl;
@@ -27,7 +29,9 @@ export class MoviesApiService {
     getPopular: (section: string, page: number) => `${this.apiUrl}?sort_by=${section}&api_key=${this.apiKey}&page=${page}&language=es&include_image_language=es`,
     getImage: (key: string) => `${this.imageApiURL}/${key}`,
     getDetail: (id: string) => `${this.apiUrlNotDiscover}/${id}?api_key=${this.apiKey}&language=es&include_image_language=es`, 
-    getCredits:(id: string) => `${this.apiUrlNotDiscover}/${id}/credits?api_key=${this.apiKey}&language=es&include_image_language=es` 
+    getCredits:(id: string) => `${this.apiUrlNotDiscover}/${id}/credits?api_key=${this.apiKey}&language=es&include_image_language=es`,
+    getMovie:(value: string) => `${this.apiSearch}/movie?query=${value}&api_key=${this.apiKey}&language=es&include_image_language=es`, 
+
   }
 
   constructor(private httpClient: HttpClient) {
@@ -48,5 +52,9 @@ export class MoviesApiService {
 
   getCredits(id: any){
     return this.httpClient.get<RespuestaCredits>(this.routes.getCredits(id));
+  }
+
+  searchMovies(value: string){
+    return this.httpClient.get<ResultMovies>(this.routes.getMovie(value));
   }
 }

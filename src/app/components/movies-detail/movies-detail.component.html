@@ -81,7 +81,7 @@
     <ion-row>
       <ion-label class="mt-3">Generos</ion-label>
       <ion-col size="12">
-        <ion-segment scrollable>
+        <!-- <ion-segment scrollable> -->
           <ion-chip
             *ngFor="let item of movie?.genres"
             color="primary"
@@ -90,7 +90,7 @@
           >
             <ion-label>{{ item.name }}</ion-label>
           </ion-chip>
-        </ion-segment>
+        <!-- </ion-segment> -->
       </ion-col>
     </ion-row>
   </ion-grid>
